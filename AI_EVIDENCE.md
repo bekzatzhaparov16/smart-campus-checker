@@ -10,7 +10,7 @@
   1. `node --test test/` failed on Node 22 (folder treated as a file); fixed with the glob `"test/*.test.js"`.
   2. The Assignment #03 code was not available, so v1 is a reconstruction (documented as an assumption).
   3. The first draft of the report had leftover placeholders and a wrong description of v1/v2; I corrected them.
-- **Changes made by me:** No code changes. I edited the report text (fixed placeholders and the description of v1/v2) and added screenshots.
+- **Changes made by me:** No code changes. I edited the report text (fixed placeholders and the description of v1/v2).
 - **Decision modified:** blocked rooms are shown but flagged instead of hidden (F3 enforced in `checkAvailability`).
 - **Verification sources:**
   - `TEST_RESULTS.txt`: real output of `npm test` in both folders (Node v22) and of `tools/measure.sh`.
