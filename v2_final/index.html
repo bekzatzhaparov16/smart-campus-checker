@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Campus room checker</title>
+<style>
+:root{--ink:#1d2b2a;--bg:#f6f8f7;--ok:#d9f2e3;--bad:#fbe1e1;--line:#c6d3cf;--acc:#0f6b5c}
+*{box-sizing:border-box}body{font:16px/1.5 system-ui,sans-serif;color:var(--ink);background:var(--bg);margin:0;padding:1rem}
+main{max-width:720px;margin:0 auto}h1{font-size:1.4rem;margin:.2rem 0 1rem}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:0 0 1rem;padding:.75rem 1rem}legend{font-weight:600}
+input[type=text],input[type=number]{font:inherit;padding:.5rem;border:1px solid var(--line);border-radius:6px;width:7rem}
+#equipment{display:flex;flex-wrap:wrap;gap:.5rem 1rem}
+.room{display:grid;gap:.1rem;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;margin-bottom:.5rem;background:#fff;cursor:pointer}
+.room.sel{border-color:var(--acc);outline:2px solid var(--acc)}.room.blocked{opacity:.7}.meta{font-size:.9rem;color:#4a5b58}
+.room input{position:absolute;opacity:0}.room:focus-within{outline:2px solid var(--acc)}
+.msg{padding:.7rem .9rem;border-radius:8px;margin:0}.ok{background:var(--ok)}.bad{background:var(--bad)}.empty{background:#fff3cd}
+@media(max-width:480px){input[type=text],input[type=number]{width:100%}}
+</style></head>
+<body><main>
+<h1>Smart Campus room checker <small>(today, current time 09:00)</small></h1>
+<form id="form" onsubmit="return false">
+<fieldset><legend>Requirements</legend>
+<label>Attendees <input id="attendees" type="number" min="1" value="1"></label>
+<div id="equipment" role="group" aria-label="Required equipment"></div></fieldset>
+<fieldset><legend>Rooms</legend><div id="rooms"></div></fieldset>
+<fieldset><legend>Time</legend>
+<label>Start <input id="start" type="text" placeholder="HH:MM" inputmode="numeric"></label>
+<label>End <input id="end" type="text" placeholder="HH:MM" inputmode="numeric"></label></fieldset>
+</form>
+<div id="result" aria-live="polite"></div>
+</main><script type="module" src="src/main.js"></script></body></html>

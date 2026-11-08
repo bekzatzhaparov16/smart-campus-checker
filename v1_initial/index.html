@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Room checker (v1)</title>
+<style>body{font-family:system-ui;max-width:480px;margin:2rem auto;padding:0 1rem}input,button{font-size:1rem;padding:.5rem;margin:.25rem 0}
+#result{margin-top:1rem;padding:.75rem;border-radius:6px}.ok{background:#e3f5e8}.bad{background:#fde8e8}</style></head>
+<body><h1>Room checker</h1><h2 id="room-name"></h2>
+<label>Start <input id="start" placeholder="HH:MM"></label>
+<label>End <input id="end" placeholder="HH:MM"></label><br>
+<button id="check">Check availability</button> <button id="hint">Next free slot</button>
+<div id="result" aria-live="polite"></div><script src="app.js"></script></body></html>

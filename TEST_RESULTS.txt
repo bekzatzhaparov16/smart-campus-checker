@@ -1,0 +1,72 @@
+# Actual execution results (Node v22.23.4, 2026-11-08)
+
+$ cd v1_initial && npm test
+ok 1 - [v1] AC1-valid: valid free interval
+ok 2 - [v1] AC1-bad-hour: hour 25 is invalid
+ok 3 - [v1] AC1-bad-text: non-time text is invalid
+ok 4 - [v1] AC1-end-before: end before start
+ok 5 - [v1] AC1-past: start before current time 09:00
+ok 6 - [v1] AC2-120-ok: exactly 120 minutes is allowed
+ok 7 - [v1] AC2-121-fail: 121 minutes is rejected
+ok 8 - [v1] AC3-blocked: blocked room is never available
+ok 9 - [v1] AC4-overlap-start: overlaps start of a booking
+ok 10 - [v1] AC4-overlap-inside: fully inside a booking
+ok 11 - [v1] AC4-overlap-around: encloses a booking
+ok 12 - [v1] AC4-touch-after: touching: starts exactly at booking end
+ok 13 - [v1] AC4-touch-before: touching: ends exactly at booking start
+ok 14 - [v1] AC5: booking data is immutable and not changed by a check
+# tests 14
+# pass 14
+# fail 0
+
+$ cd v2_final && npm test
+ok 1 - [v2] AC1-valid: valid free interval
+ok 2 - [v2] AC1-bad-hour: hour 25 is invalid
+ok 3 - [v2] AC1-bad-text: non-time text is invalid
+ok 4 - [v2] AC1-end-before: end before start
+ok 5 - [v2] AC1-past: start before current time 09:00
+ok 6 - [v2] AC2-120-ok: exactly 120 minutes is allowed
+ok 7 - [v2] AC2-121-fail: 121 minutes is rejected
+ok 8 - [v2] AC3-blocked: blocked room is never available
+ok 9 - [v2] AC4-overlap-start: overlaps start of a booking
+ok 10 - [v2] AC4-overlap-inside: fully inside a booking
+ok 11 - [v2] AC4-overlap-around: encloses a booking
+ok 12 - [v2] AC4-touch-after: touching: starts exactly at booking end
+ok 13 - [v2] AC4-touch-before: touching: ends exactly at booking start
+ok 14 - [v2] AC5: booking data is immutable and not changed by a check
+ok 15 - catalog has at least 4 rooms with id, name, capacity, equipment, blocked, bookings
+ok 16 - F1 capacity boundary: exact capacity matches
+ok 17 - F1 capacity boundary: one more than capacity does not match
+ok 18 - F2 equipment: room must contain ALL selected items
+ok 19 - F1+F2 combined
+ok 20 - F3 blocked room is never reported as available
+ok 21 - availability uses the chosen room bookings, not another room's
+ok 22 - F4 integration: no match -> view has empty matches and HTML shows a clear empty state
+ok 23 - F5 integration: switching room re-evaluates the same time slot
+ok 24 - F5 integration: selection that no longer matches the filters is dropped (no stale result)
+ok 25 - UI: invalid attendees show an error message instead of crashing
+ok 26 - UI: blocked room is listed but flagged, and checking it fails with a clear reason
+ok 27 - UI: output is HTML-escaped
+# tests 27
+# pass 27
+# fail 0
+
+$ ./tools/measure.sh
+category                 v1  v2  removed
+time parsing sites       8   1   7
+overlap test sites       2   1   1
+result rendering sites   2   1   1
+TOTAL duplicated sites removed: 9
+
+Lines of code per file:
+     73 v1_initial/app.js
+     43 v2_final/src/availability.js
+     20 v2_final/src/controller.js
+      5 v2_final/src/filter.js
+     25 v2_final/src/main.js
+     20 v2_final/src/rooms.js
+     18 v2_final/src/time.js
+     21 v2_final/src/view.js
+    225 total
+
+JS source files: v1=1 v2=7

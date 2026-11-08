@@ -1,0 +1,18 @@
+{
+  "note": "Shared acceptance cases run against room A101 (bookings 10:00-11:00 and 13:00-14:30), fixed now = 09:00. Used by BOTH v1 and v2 to prove behavior is preserved.",
+  "cases": [
+    {"id":"AC1-valid",          "desc":"valid free interval",                  "start":"11:00","end":"12:00","available":true, "code":"OK"},
+    {"id":"AC1-bad-hour",       "desc":"hour 25 is invalid",                   "start":"25:00","end":"26:00","available":false,"code":"INVALID_FORMAT"},
+    {"id":"AC1-bad-text",       "desc":"non-time text is invalid",             "start":"abc",  "end":"11:00","available":false,"code":"INVALID_FORMAT"},
+    {"id":"AC1-end-before",     "desc":"end before start",                     "start":"12:00","end":"11:00","available":false,"code":"END_BEFORE_START"},
+    {"id":"AC1-past",           "desc":"start before current time 09:00",      "start":"08:30","end":"09:30","available":false,"code":"IN_PAST"},
+    {"id":"AC2-120-ok",         "desc":"exactly 120 minutes is allowed",       "start":"14:30","end":"16:30","available":true, "code":"OK"},
+    {"id":"AC2-121-fail",       "desc":"121 minutes is rejected",              "start":"14:30","end":"16:31","available":false,"code":"TOO_LONG"},
+    {"id":"AC3-blocked",        "desc":"blocked room is never available",      "start":"11:00","end":"12:00","blocked":true,"available":false,"code":"BLOCKED"},
+    {"id":"AC4-overlap-start",  "desc":"overlaps start of a booking",          "start":"09:30","end":"10:30","available":false,"code":"OVERLAP"},
+    {"id":"AC4-overlap-inside", "desc":"fully inside a booking",               "start":"10:15","end":"10:45","available":false,"code":"OVERLAP"},
+    {"id":"AC4-overlap-around", "desc":"encloses a booking",                   "start":"09:30","end":"11:30","available":false,"code":"OVERLAP"},
+    {"id":"AC4-touch-after",    "desc":"touching: starts exactly at booking end","start":"11:00","end":"12:00","available":true,"code":"OK"},
+    {"id":"AC4-touch-before",   "desc":"touching: ends exactly at booking start","start":"09:00","end":"10:00","available":true,"code":"OK"}
+  ]
+}
